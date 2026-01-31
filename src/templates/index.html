@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprout AI | Intelligent Health Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🌱 Sprout AI</div>
+            <p class="tagline">Your Intelligent Health Companion</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <h2>Check Your Symptoms</h2>
+                <p>Enter your symptoms separated by commas (e.g., fever, cough, headache)</p>
+                <div class="input-wrapper">
+                    <input type="text" id="symptomsInput" placeholder="Describe your symptoms here..." autocomplete="off">
+                    <button id="analyzeBtn" onclick="analyzeSymptoms()">Analyze</button>
+                </div>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing symptoms...</p>
+            </div>
+
+            <div id="resultSection" class="hidden">
+                <!-- Results will be injected here via JS -->
+            </div>
+        </main>
+
+        <footer>
+            <p><strong>Disclaimer:</strong> Sprout AI is an educational tool and does not replace professional medical advice. In case of emergency, call your local emergency services immediately.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

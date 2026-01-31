@@ -1,0 +1,71 @@
+{
+  "disease_remedies": {
+    "fungal infection": ["Keep area dry and clean", "Apply antifungal cream", "Wear loose clothing"],
+    "allergy": ["Identify and avoid triggers", "Antihistamines (consult doctor)", "Cool compress for itching"],
+    "gerd": ["Avoid spicy foods", "Eat smaller meals", "Do not lie down immediately after eating"],
+    "chronic cholestasis": ["Medical consultation required", "Low-fat diet", "Stay hydrated"],
+    "drug reaction": ["Stop the medication immediately", "Consult doctor", "Drink plenty of water"],
+    "peptic ulcer diseae": ["Avoid spicy and acidic foods", "Probiotics", "Stress management"],
+    "aids": ["Immediate medical attention required", "Antiretroviral therapy (prescribed)", "Healthy diet to support immunity"],
+    "diabetes": ["Monitor blood sugar", "Low-carb diet", "Regular exercise"],
+    "gastroenteritis": ["Hydration with electrolytes", "Brat diet (Bananas, Rice, Applesauce, Toast)", "Rest"],
+    "bronchial asthma": ["Use prescribed inhaler", "Avoid triggers (dust, smoke)", "Breathing exercises"],
+    "hypertension": ["Reduce salt intake", "Regular exercise", "Stress reduction"],
+    "migraine": ["Rest in a dark, quiet room", "Cold compress", "Hydration"],
+    "cervical spondylosis": ["Neck exercises", "Proper posture", "Hot/Cold therapy"],
+    "paralysis (brain hemorrhage)": ["EMERGENCY: Call Ambulance", "Do not move the patient unnecessary"],
+    "jaundice": ["Rest", "Hydration", "Avoid alcohol", "Light diet"],
+    "malaria": ["Medical treatment required", "Rest", "Hydration"],
+    "chicken pox": ["Oatmeal bath", "Calamine lotion", "Avoid scratching"],
+    "dengue": ["Hydration (critical)", "Rest", "Monitor platelet count"],
+    "typhoid": ["Antibiotics (prescribed)", "Clean water", "Soft diet"],
+    "hepatitis a": ["Rest", "Hydration", "Avoid alcohol"],
+    "hepatitis b": ["Medical consultation", "Antiviral medication", "Healthy lifestyle"],
+    "hepatitis c": ["Medical consultation", "Avoid liver strain"],
+    "hepatitis d": ["Medical supervision", "Supportive care"],
+    "hepatitis e": ["Rest", "Hydration", "Hygiene"],
+    "alcoholic hepatitis": ["Stop alcohol immediately", "Nutritional support", "Medical supervision"],
+    "tuberculosis": ["Complete antibiotic course", "Isolation to prevent spread", "Nutritious diet"],
+    "common cold": ["Rest", "Hydration", "Steam inhalation", "Honey and lemon"],
+    "pneumonia": ["Antibiotics (prescribed)", "Rest", "Oxygen therapy if needed"],
+    "dimorphic hemmorhoids(piles)": ["High fiber diet", "Sitz bath", "Hydration"],
+    "heart attack": ["EMERGENCY: Call Ambulance", "Chew aspirin (if advised)", "Stay calm"],
+    "varicose veins": ["Compression stockings", "Elevate legs", "Exercise"],
+    "hypothyroidism": ["Thyroid medication", "Iodine-rich diet", "Exercise"],
+    "hyperthyroidism": ["Medical treatment", "Balanced diet", "Stress management"],
+    "hypoglycemia": ["Consume fast-acting sugar (candy, juice)", "Monitor blood glucose"],
+    "osteoarthristis": ["Gentle exercise", "Weight management", "Hot/Cold therapy"],
+    "arthritis": ["Anti-inflammatory diet", "Physical therapy", "Joint protection"],
+    "(vertigo) paroymsal  positional vertigo": ["Epley maneuver (if trained)", "Sit down immediately", "Avoid sudden head movements"],
+    "acne": ["Keep face clean", "Avoid touching face", "Over-the-counter benzoyl peroxide"],
+    "urinary tract infection": ["Hydration (cranberry juice might help)", "Antibiotics (prescribed)"],
+    "psoriasis": ["Moisturize", "Avoid triggers", "Medicated creams"],
+    "impetigo": ["Antibiotic ointment", "Keep sores covered", "Good hygiene"]
+  },
+  "additional_conditions": [
+    {
+      "name": "Nose Bleed (Epistaxis)",
+      "symptoms": ["bleeding from nose", "nosebleed", "blood from nose", "nasal bleeding"],
+      "remedies": ["Lean forward (do NOT tilt head back)", "Pinch the soft part of the nose for 10 mins", "Apply ice pack to bridge of nose", "Consult doctor if it doesn't stop after 20 mins"],
+      "severity": "Mild (usually)"
+    },
+    {
+       "name": "Dehydration",
+       "symptoms": ["dry mouth", "extreme thirst", "dark urine", "headache", "dizziness"],
+       "remedies": ["Drink electrolyte solution", "Sip water slowly", "Rest in cool place"],
+       "severity": "Moderate"
+    },
+    {
+       "name": "Insomnia",
+       "symptoms": ["trouble sleeping", "waking up tired", "difficulty falling asleep"],
+       "remedies": ["Maintain sleep schedule", "Reduce screen time", "Chamomile tea", "Melatonin (consult doctor)"],
+       "severity": "Low"
+    },
+    {
+      "name": "Stress / Anxiety",
+      "symptoms": ["restlessness", "worry", "rapid heartbeat", "nervousness"],
+      "remedies": ["Deep breathing exercises", "Meditation", "Physical activity", "Talk therapy"],
+      "severity": "Moderate"
+    }
+  ]
+}

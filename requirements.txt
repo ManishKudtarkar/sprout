@@ -1,0 +1,9 @@
+pytest
+flask
+
+chromadb
+sentence-transformers
+
+scikit-learn
+pandas
+joblib
