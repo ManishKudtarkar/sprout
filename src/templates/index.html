@@ -16,6 +16,25 @@
 
         <main>
             <div class="input-section">
+                <!-- User Profile Section -->
+                <div class="profile-section" style="margin-bottom: 20px; text-align: left; background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                    <h3 style="font-size: 1rem; color: #2E8B57; margin-top: 0;">User Profile (Optional)</h3>
+                    <div style="display: flex; gap: 15px;">
+                        <div>
+                            <label for="ageInput">Age:</label>
+                            <input type="number" id="ageInput" placeholder="age" style="width: 60px;">
+                        </div>
+                        <div>
+                            <label for="bodyType">Body Type:</label>
+                            <select id="bodyType" style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                                <option value="neutral">Neutral</option>
+                                <option value="heat">Heat Body (Pitta)</option>
+                                <option value="cold">Cold Body (Vata/Kapha)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <h2>Check Your Symptoms</h2>
                 <p>Enter your symptoms separated by commas (e.g., fever, cough, headache)</p>
                 <div class="input-wrapper">

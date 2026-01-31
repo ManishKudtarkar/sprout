@@ -2,7 +2,12 @@ async function analyzeSymptoms() {
     const input = document.getElementById('symptomsInput');
     const resultSection = document.getElementById('resultSection');
     const loading = document.getElementById('loading');
+    const analyzeBtn = document.getElementById('analyzeBtn');
     
+    // Get Profile Data
+    const age = document.getElementById('ageInput').value;
+    const bodyType = document.getElementById('bodyType').value;
+
     const symptoms = input.value.trim();
 
     if (!symptoms) {
@@ -21,7 +26,13 @@ async function analyzeSymptoms() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ symptoms })
+            body: JSON.stringify({ 
+                symptoms: symptoms,
+                profile: {
+                    age: age,
+                    body_type: bodyType
+                }
+            })
         });
 
         const data = await response.json();
@@ -32,6 +43,13 @@ async function analyzeSymptoms() {
 
         if (data.status === 'emergency') {
             renderEmergency(data);
+            if (data.lockdown) {
+                // UI Lockdown
+                input.disabled = true;
+                analyzeBtn.disabled = true;
+                input.placeholder = "SYSTEM LOCKED - Seek Medical Help";
+                analyzeBtn.style.backgroundColor = "#ccc";
+            }
         } else if (data.status === 'success') {
             renderDiagnosis(data);
         } else {
