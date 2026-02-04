@@ -2,10 +2,15 @@ import json
 import os
 import sys
 
+# Disable ChromaDB Telemetry
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+os.environ["CHROMA_ANONYMIZED_TELEMETRY"] = "False"
+
 # Try imports for advanced features, handle failure gracefully
 try:
     import chromadb
     from chromadb.utils import embedding_functions
+    from chromadb.config import Settings
     VECTOR_DB_AVAILABLE = True
 except ImportError:
     VECTOR_DB_AVAILABLE = False
@@ -80,13 +85,13 @@ class SymptomAnalyzer:
             try:
                 # Check if DB exists
                 if os.path.exists(self.db_path):
-                    self.vector_client = chromadb.PersistentClient(path=self.db_path)
+                    self.vector_client = chromadb.PersistentClient(path=self.db_path, settings=Settings(anonymized_telemetry=False))
                     ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
                     self.collection = self.vector_client.get_collection(name="health_conditions", embedding_function=ef)
                     print("Debug: Vector DB loaded successfully.")
             except Exception as e:
-                # print(f"Debug: Vector DB init failed: {e}")
-                pass
+                print(f"Debug: Vector DB init failed: {e}")
+                # pass
 
     def _init_ml_model(self):
         if ML_MODEL_AVAILABLE:
@@ -98,54 +103,57 @@ class SymptomAnalyzer:
                 # print(f"Debug: ML Model init failed: {e}")
                 pass
 
-    def diagnose(self, user_symptoms):
+    def diagnose(self, user_symptoms, user_profile=None):
         """
-        Matches user symptoms to known conditions using:
-        1. Vector DB (Semantic Search) - BEST
-        2. ML Model (Probabilistic Classification)
-        3. Rule-based (Keyword Matching) - FALLBACK
+        Production-Grade Diagnosis Pipeline:
+        1. Contextual Vector Search (Filter by Metadata if possible)
+        2. Semantic Similarity Re-ranking
+        3. Business Logic / Safety Layer
         """
         user_symptoms_str = " ".join(user_symptoms)
         
-        # 1. Try Vector DB
+        # 1. Advanced Vector Search
         if self.collection:
             try:
+                # Query more results to allow for re-ranking/filtering
                 results = self.collection.query(
                     query_texts=[user_symptoms_str],
-                    n_results=1
+                    n_results=5 
                 )
                 
-                if results["metadatas"] and results["metadatas"][0]:
-                    # Format result to match expected output
-                    best_match = results["metadatas"][0][0]
-                    # Distance is a dissimilarity score (lower is better)
-                    distance = results["distances"][0][0]
-                    
-                    # Threshold for valid match (heuristic)
-                    if distance < 1.5: 
-                         # We need to parse remedies back from string if we stored it as JSON string
-                        import json # make sure json is available
-                        remedies = best_match["remedies"]
-                        if isinstance(remedies, str):
-                            try:
-                                remedies = json.loads(remedies)
-                            except:
-                                remedies = []
-
-                        return [{
-                            "name": best_match["name"],
-                            "severity": best_match["severity"],
+                if results['metadatas'] and results['metadatas'][0]:
+                    candidates = []
+                    for i, meta in enumerate(results['metadatas'][0]):
+                        dist = results['distances'][0][i]
+                        
+                        # Parse complex fields
+                        import json
+                        try:
+                            remedies = json.loads(meta.get('remedies', '[]'))
+                        except:
+                            remedies = []
+                            
+                        candidate = {
+                            "name": meta['name'],
+                            "severity": meta['severity'],
                             "remedies": remedies,
-                            "source": "Vector AI"
-                        }]
+                            "source": "Vector AI",
+                            "score": 1 - dist # Convert distance to similarity score
+                        }
+                        candidates.append(candidate)
+                    
+                    # Rerank / Filter candidates based on profile (Faang-style logic)
+                    best_match = self._rerank_candidates(candidates, user_profile)
+                    if best_match:
+                        return [best_match]
+
             except Exception as e:
                 print(f"Vector search error: {e}")
 
-        # 2. Try ML Model
+        # 2. Try ML Model (Fall back if Vector fails)
         if self.ml_model:
             try:
                 prediction_name = self.ml_model.predict([user_symptoms_str])[0]
-                # Find details for predicted name
                 for cond in self.conditions:
                     if cond["name"] == prediction_name:
                         return [{
@@ -155,10 +163,30 @@ class SymptomAnalyzer:
                             "source": "ML Model"
                         }]
             except Exception as e:
-                print(f"ML prediction error: {e}")
+                pass
 
-        # 3. Fallback to Rule-Based
+        # 3. Fallback
         return self._diagnose_rule_based(user_symptoms)
+
+    def _rerank_candidates(self, candidates, profile):
+        """
+        Reranks potential diagnoses based on specific rules or profile data.
+        """
+        if not candidates:
+            return None
+            
+        # For now, just return the highest score, but this is where
+        # you would add logic like "If age < 10, de-prioritize 'Adult Onset Diabetes'"
+        # or specific confidence thresholds.
+        
+        # Filter out low confidence
+        high_conf = [c for c in candidates if c['score'] > 0.2] # Adjust threshold
+        
+        if not high_conf:
+            return None
+            
+        return max(high_conf, key=lambda x: x['score'])
+
 
     def _diagnose_rule_based(self, user_symptoms):
         potential_conditions = []

@@ -1,7 +1,11 @@
 import json
 import os
+# Disable ChromaDB Telemetry
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+os.environ["CHROMA_ANONYMIZED_TELEMETRY"] = "False"
 import chromadb
 from chromadb.utils import embedding_functions
+from chromadb.config import Settings
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -54,7 +58,7 @@ def ingest_data():
         return
 
     print(f"Initializing ChromaDB at {DB_PATH}...")
-    client = chromadb.PersistentClient(path=DB_PATH)
+    client = chromadb.PersistentClient(path=DB_PATH, settings=Settings(anonymized_telemetry=False))
     
     # Use a standard embedding model
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")

@@ -66,6 +66,66 @@
       "symptoms": ["restlessness", "worry", "rapid heartbeat", "nervousness"],
       "remedies": ["Deep breathing exercises", "Meditation", "Physical activity", "Talk therapy"],
       "severity": "Moderate"
+    },
+    {
+      "name": "Sunburn",
+      "symptoms": ["red skin", "painful skin", "hot skin", "peeling skin"],
+      "remedies": ["Aloe vera gel", "Cool bath", "Stay hydrated", "Avoid further sun exposure"],
+      "severity": "Mild"
+    },
+    {
+      "name": "Food Poisoning",
+      "symptoms": ["nausea", "vomiting", "diarrhea", "stomach cramps", "fever"],
+      "remedies": ["Hydration with electrolytes", "Rest", "Brat diet", "Probiotics"],
+      "severity": "Moderate"
+    },
+    {
+      "name": "Motion Sickness",
+      "symptoms": ["nausea", "dizziness", "vomiting", "sweating"],
+      "remedies": ["Look at the horizon", "Ginger", "Fresh air", "Acupressure wristbands"],
+      "severity": "Mild"
+    },
+    {
+      "name": "Digital Eye Strain",
+      "symptoms": ["dry eyes", "blurred vision", "headache", "neck pain"],
+      "remedies": ["20-20-20 rule (Look 20ft away for 20s every 20mins)", "Blink often", "Adjust screen brightness"],
+      "severity": "Low"
+    },
+    {
+      "name": "Bee Sting",
+      "symptoms": ["pain at site", "redness", "swelling", "itching"],
+      "remedies": ["Remove stinger", "Wash with soap and water", "Ice pack", "Elevate area"],
+      "severity": "Mild (Emergency if allergic)"
+    },
+    {
+      "name": "Sprained Ankle",
+      "symptoms": ["pain", "swelling", "bruising", "difficulty walking"],
+      "remedies": ["R.I.C.E (Rest, Ice, Compression, Elevation)", "Over-the-counter pain relief"],
+      "severity": "Moderate"
+    },
+    {
+      "name": "Menstrual Cramps",
+      "symptoms": ["abdominal pain", "cramps", "lower back pain", "bloating"],
+      "remedies": ["Heat pad on abdomen", "Ginger tea", "Gentle stretching", "Stay hydrated"],
+      "severity": "Moderate"
+    },
+    {
+      "name": "Hangover",
+      "symptoms": ["headache", "nausea", "fatigue", "thirst", "light sensitivity"],
+      "remedies": ["Electrolyte drinks", "Rest", "Eat carbohydrates", "Pain reliever (Avoid Tylenol/Paracetamol if alcohol in system)"],
+      "severity": "Mild"
+    },
+    {
+      "name": "Sore Throat",
+      "symptoms": ["pain when swallowing", "scratchy throat", "hoarseness", "red throat"],
+      "remedies": ["Salt water gargle", "Honey and warm water", "Throat lozenges", "Humidifier"],
+      "severity": "Mild"
+    },
+    {
+      "name": "Concussion (Mild)",
+      "symptoms": ["headache", "confusion", "dizziness", "nausea after hit"],
+      "remedies": ["Mental and physical rest", "Avoid screens", "Monitor for worsening symptoms (Sleep is okay)", "Consult doctor"],
+      "severity": "Moderate (Monitor Closely)"
     }
   ]
 }

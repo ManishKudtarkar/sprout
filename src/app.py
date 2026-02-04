@@ -8,6 +8,7 @@ from notifications import NotificationManager
 app = Flask(__name__)
 
 # Initialize modules
+print("Initializing modules...")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH = os.path.join(os.path.dirname(BASE_DIR), 'data', 'symptoms.json')
 
@@ -46,7 +47,9 @@ def analyze():
         })
 
     # 2. Diagnosis
-    predictions = analyzer.diagnose(symptoms)
+    # Pass full profile to diagnosis for reranking
+    predictions = analyzer.diagnose(symptoms, user_profile)
+    
     if not predictions:
         return jsonify({
             'status': 'unknown',
@@ -59,8 +62,9 @@ def analyze():
     remedy_details = []
     
     for remedy in remedies:
-        # Clean remedy name for explanation lookup if it has warnings appended
-        clean_name = remedy.split(" (Caution")[0]
+        # Clean remedy name for explanation lookup (remove warnings/details in brackets)
+        # e.g. "Rest (Consult Doctor)" -> "Rest"
+        clean_name = remedy.split(" (")[0]
         explanation = remedy_recommender.explain_remedy(clean_name)
         remedy_details.append({'name': remedy, 'explanation': explanation})
 
@@ -72,4 +76,5 @@ def analyze():
     })
 
 if __name__ == '__main__':
+    print("Starting Flask server...")
     app.run(debug=True)

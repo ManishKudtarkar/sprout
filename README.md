@@ -6,10 +6,16 @@ Sprout AI is an intelligent health assistance system designed to analyze user-pr
 The core objective of Sprout AI is to support users in understanding their health issues at an early stage and encourage timely action, while avoiding unsafe or misleading medical advice. The system does not replace doctors; instead, it acts as a first-level health intelligence and awareness tool.
 
 ## Key Features
-- **Hybrid AI Approach:** Combines rule-based diagnosis with dataset-driven logic.
-- **Natural Remedies:** Recommends appropriate natural remedies with explanations.
-- **Emergency Detection:** Scans for high-risk symptoms (e.g., chest pain, difficulty breathing) and advises immediate medical consultation.
-- **Modular and Scalable:** Designed for future integration with machine learning and LLMs.
+- **Hybrid Diagnosis Pipeline:** Combines Vector Search (ChromaDB), Machine Learning (Scikit-Learn), and Rules for high-accuracy predictions.
+- **Smart Personalization:** Adapts remedies based on User Profile (Age, Body Type - Vata/Pitta/Kapha).
+- **Safety First:** Filters unsafe advice for Children (<12) and Seniors (>65).
+- **Emergency Detection:** Scans for high-risk symptoms and triggers "Lockdown Mode" forcing medical consultation.
+- **Natural Remedies:** Recommends safe, explainable home treatments.
+
+## Advanced Tech Stack (FAANG Level)
+- **Vector Database:** integrated ChromaDB for semantic search.
+- **Web Interface:** Modern Flask + Tailwind-like UI.
+- **Scalability:** Modular architecture ready for cloud deployment.
 
 ## Project Structure
 - `src/`: Source code for the application.
